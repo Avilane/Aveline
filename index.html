@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvilaneModz | Premium Game Hacks</title>
+    <style>
+        /* Global Styles */
+        body {
+            background: #111;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* RGB Text Animation */
+        .rgb-text {
+            font-size: 2.8em;
+            background: linear-gradient(90deg, 
+                #ff0000, #ff8000, #ffff00, #80ff00,
+                #00ffff, #0080ff, #ff00ff, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 400% 400%;
+            animation: rgb-flow 6s linear infinite;
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+        
+        /* Premium Badge */
+        .premium-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #fc00ff, #00dbde);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            animation: rgb-bg 4s ease infinite;
+            margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0,219,222,0.5);
+        }
+        
+        /* RGB Download Button */
+        .rgb-download-btn {
+            display: block;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            background: linear-gradient(90deg, 
+                #ff0000, #00ff00, #0000ff);
+            background-size: 300% 300%;
+            animation: rgb-flow 4s ease infinite;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* VIP Gate Styles */
+        .vip-gate {
+            background: rgba(0,0,0,0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0,255,255,0.3);
+        }
+        
+        /* RGB Menu */
+        .rgb-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        /* Animations */
+        @keyframes rgb-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes rgb-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+        
+        /* Layout Components */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .script-card {
+            background: rgba(30,30,30,0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #00ffff;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background: rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- RGB Floating Menu -->
+    <div class="rgb-menu">
+        <div class="rgb-dots">⋮</div>
+        <div class="rgb-dropdown">
+            <a href="#suggestions">💡 Suggestions</a>
+            <a href="#contact">📩 Contact</a>
+            <a href="#faq">❓ FAQ</a>
+        </div>
+    </div>
+
+    <header>
+        <h1 class="rgb-text">AVILANEMODZ</h1>
+        <div class="premium-badge">PREMIUM GAME HACKS</div>
+    </header>
+    
+    <div class="container">
+        <!-- VIP Section -->
+        <div class="vip-gate">
+            <h3 class="rgb-text">ENTER VIP AREA</h3>
+            <input type="password" id="vipPassword" placeholder="Enter password...">
+            <button onclick="checkPassword()" class="rgb-download-btn">UNLOCK PREMIUM</button>
+            <p id="vipMessage"></p>
+        </div>
+        
+        <!-- Scripts Section -->
+        <div class="script-card">
+            <h2>Subway Surfers VIP Script</h2>
+            <a href="https://www.mediafire.com/file/flyxm6gwmx1kwjp/ScriptSubwaySurfers_Vip.lua/file" class="rgb-download-btn">
+                <span class="rgb-icon">⬇️</span> 
+                DOWNLOAD NOW
+                <span class="premium-badge">VIP</span>
+            </a>
+            <p>Features: Unlimited coins, keys, and all characters unlocked!</p>
+        </div>
+        
+        <div class="script-card">
+            <h2>Dead Target VIP Script</h2>
+            <a href="https://www.mediafire.com/file/iraacr00f6ic184/Script_DeadTarget_Vip_AutoUpdate.lua/file" class="rgb-download-btn">
+                <span class="rgb-icon">⬇️</span> 
+                DOWNLOAD NOW
+                <span class="premium-badge">AUTO-UPDATE</span>
+            </a>
+            <p>Features: God mode, unlimited ammo, and premium weapons!</p>
+        </div>
+        
+        <!-- Tools Section -->
+        <div class="script-card">
+            <h2>Required Tools</h2>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="https://www.mediafire.com/file/lws8qa0zlcuj92y/Game_Guardian.apk/file" class="rgb-download-btn" style="flex: 1; min-width: 200px;">
+                    Game Guardian APK
+                </a>
+                <a href="https://www.mediafire.com/file/hqyty2i71nwolwx/Virtual.apk/file" class="rgb-download-btn" style="flex: 1; min-width: 200px;">
+                    Virtual Space APK
+                </a>
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="script-card" id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:lennnhz6@gmail.com" style="color: #00ffff;">lennnhz6@gmail.com</a></p>
+            <p>Telegram: <a href="https://t.me/Lymmtrzy" style="color: #00ffff;">@Lymmtrzy</a></p>
+            <p>YouTube: <a href="https://www.youtube.com/@AvelineID" style="color: #00ffff;">AvelineID</a></p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 AvilaneModz | Password: Avilane20</p>
+    </footer>
+
+    <script>
+        // Password Checker
+        function checkPassword() {
+            const pass = document.getElementById("vipPassword").value;
+            const message = document.getElementById("vipMessage");
+            
+            if(pass === "Avilane20") {
+                message.innerHTML = "✅ Access Granted! Loading VIP content...";
+                message.style.color = "#0f0";
+                // Here you would typically load VIP content or redirect
+                setTimeout(() => {
+                    alert("VIP Content Unlocked! (This would show premium scripts in a real implementation)");
+                }, 1000);
+            } else {
+                message.innerHTML = "❌ Wrong Password! Try 'Avilane20'";
+                message.style.color = "#f00";
+            }
+        }
+        
+        // Menu Animation
+        document.querySelector('.rgb-dots').addEventListener('click', function() {
+            const dropdown = document.querySelector('.rgb-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>
