@@ -3,224 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AvilaneModz | Premium Game Hacks</title>
+    <title>AvelineModz | Premium Game Hacks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Styles */
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --main-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-primary: #ffffff;
+            --accent-cyan: #00ffff;
+            --accent-pink: #ff00ff;
+            --accent-purple: #9c27b0;
+            --glow-cyan: 0 0 15px rgba(0, 255, 255, 0.7);
+            --glow-pink: 0 0 15px rgba(255, 0, 255, 0.7);
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== DARK/LIGHT MODE ===== */
+        [data-theme="light"] {
+            --main-bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-primary: #333333;
+        }
+
+        /* ===== BASE STYLES ===== */
         body {
-            background: #111;
-            color: white;
-            font-family: 'Arial', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', system-ui, sans-serif;
             margin: 0;
             padding: 0;
+            transition: var(--transition);
         }
-        
-        /* RGB Text Animation */
-        .rgb-text {
-            font-size: 2.8em;
-            background: linear-gradient(90deg, 
-                #ff0000, #ff8000, #ffff00, #80ff00,
-                #00ffff, #0080ff, #ff00ff, #ff0000);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 400% 400%;
-            animation: rgb-flow 6s linear infinite;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
-        }
-        
-        /* Premium Badge */
-        .premium-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #fc00ff, #00dbde);
-            color: white;
-            font-weight: bold;
-            font-size: 1.2em;
-            animation: rgb-bg 4s ease infinite;
-            margin-top: 10px;
-            box-shadow: 0 0 15px rgba(0,219,222,0.5);
-        }
-        
-        /* RGB Download Button */
-        .rgb-download-btn {
-            display: block;
-            padding: 15px;
-            margin: 15px 0;
-            text-align: center;
-            background: linear-gradient(90deg, 
-                #ff0000, #00ff00, #0000ff);
-            background-size: 300% 300%;
-            animation: rgb-flow 4s ease infinite;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        /* VIP Gate Styles */
-        .vip-gate {
-            background: rgba(0,0,0,0.8);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 500px;
-            margin: 0 auto;
-            border: 2px solid #00ffff;
-            box-shadow: 0 0 20px rgba(0,255,255,0.3);
-        }
-        
-        /* RGB Menu */
-        .rgb-menu {
+
+        /* ===== LOADING ANIMATION ===== */
+        .loader-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-        
-        /* Animations */
-        @keyframes rgb-flow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid transparent;
+            border-top-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
         }
-        
-        @keyframes rgb-bg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        .loader::before,
+        .loader::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 5px solid transparent;
         }
-        
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-5px); }
+
+        .loader::before {
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-top-color: var(--accent-pink);
+            animation: spin 2s linear infinite reverse;
         }
-        
-        /* Layout Components */
+
+        .loader::after {
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-top-color: var(--accent-purple);
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== HEADER STYLES ===== */
         header {
             text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            padding: 2rem 0;
+            position: relative;
         }
-        
+
+        /* ===== RGB TOGGLE BUTTON ===== */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--glow-cyan);
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: var(--glow-pink);
+        }
+
+        /* ===== MAIN CONTENT STYLES ===== */
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-        
+
+        /* ===== SCRIPT CARDS ===== */
         .script-card {
-            background: rgba(30,30,30,0.8);
+            background: var(--card-bg);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 30px;
-            border-left: 5px solid #00ffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .script-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+        }
+
+        /* ===== DOWNLOAD BUTTONS ===== */
+        .download-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-pink);
+        }
+
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .download-btn:hover::after {
+            left: 100%;
+        }
+
+        /* ===== FEATURES LIST ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .feature {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature i {
+            margin-right: 8px;
+            color: var(--accent-cyan);
+        }
+
+        /* ===== SCROLL EFFECTS ===== */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== FOOTER STYLES ===== */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px 0;
             margin-top: 50px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+
+        /* ===== UPDATE NOTIFICATION ===== */
+        .update-banner {
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .update-banner.show {
+            transform: translateY(0);
+        }
+
+        /* ===== DELAYED DOWNLOAD ANIMATION ===== */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .download-processing {
+            animation: pulse 1.5s infinite;
+            position: relative;
+        }
+
+        .download-processing::after {
+            content: 'Preparing download...';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
         }
     </style>
 </head>
 <body>
-    <!-- RGB Floating Menu -->
-    <div class="rgb-menu">
-        <div class="rgb-dots">⋮</div>
-        <div class="rgb-dropdown">
-            <a href="#suggestions">💡 Suggestions</a>
-            <a href="#contact">📩 Contact</a>
-            <a href="#faq">❓ FAQ</a>
-        </div>
+    <!-- Loading Animation -->
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+        <p>Loading AvelineModz...</p>
     </div>
 
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-adjust"></i>
+    </button>
+
+    <!-- Header -->
     <header>
-        <h1 class="rgb-text">AVILANEMODZ</h1>
-        <div class="premium-badge">PREMIUM GAME HACKS</div>
+        <h1 class="rgb-text">AvelineModz</h1>
+        <p>Premium Game Hacks & Scripts</p>
     </header>
-    
+
+    <!-- Main Content -->
     <div class="container">
-        <!-- VIP Section -->
-        <div class="vip-gate">
-            <h3 class="rgb-text">ENTER VIP AREA</h3>
-            <input type="password" id="vipPassword" placeholder="Enter password...">
-            <button onclick="checkPassword()" class="rgb-download-btn">UNLOCK PREMIUM</button>
-            <p id="vipMessage"></p>
-        </div>
-        
-        <!-- Scripts Section -->
-        <div class="script-card">
-            <h2>Subway Surfers VIP Script</h2>
-            <a href="https://www.mediafire.com/file/flyxm6gwmx1kwjp/ScriptSubwaySurfers_Vip.lua/file" class="rgb-download-btn">
-                <span class="rgb-icon">⬇️</span> 
-                DOWNLOAD NOW
-                <span class="premium-badge">VIP</span>
-            </a>
-            <p>Features: Unlimited coins, keys, and all characters unlocked!</p>
-        </div>
-        
-        <div class="script-card">
+        <!-- Dead Target Script -->
+        <div class="script-card scroll-reveal">
             <h2>Dead Target VIP Script</h2>
-            <a href="https://www.mediafire.com/file/iraacr00f6ic184/Script_DeadTarget_Vip_AutoUpdate.lua/file" class="rgb-download-btn">
-                <span class="rgb-icon">⬇️</span> 
-                DOWNLOAD NOW
-                <span class="premium-badge">AUTO-UPDATE</span>
-            </a>
-            <p>Features: God mode, unlimited ammo, and premium weapons!</p>
+            <div class="features">
+                <div class="feature"><i class="fas fa-coins"></i> Unlimited Gold</div>
+                <div class="feature"><i class="fas fa-money-bill-wave"></i> Unlimited Money</div>
+                <div class="feature"><i class="fas fa-gem"></i> Unlimited Diamond</div>
+                <div class="feature"><i class="fas fa-bullseye"></i> Unlimited Ammo</div>
+                <div class="feature"><i class="fas fa-skull"></i> One Hit Zombie</div>
+            </div>
+            <p><strong>System:</strong> Auto Update</p>
+            <button class="download-btn" onclick="startDownload('https://www.mediafire.com/file/iraacr00f6ic184/Script_DeadTarget_Vip_AutoUpdate.lua/file')">
+                <i class="fas fa-download"></i> Download Now
+            </button>
         </div>
-        
-        <!-- Tools Section -->
-        <div class="script-card">
+
+        <!-- Subway Surfers Script -->
+        <div class="script-card scroll-reveal">
+            <h2>Subway Surfers VIP Script</h2>
+            <div class="features">
+                <div class="feature"><i class="fas fa-shopping-cart"></i> Free Shop</div>
+                <div class="feature"><i class="fas fa-key"></i> Unlimited Coin/Key</div>
+                <div class="feature"><i class="fas fa-running"></i> Unlimited Jump</div>
+                <div class="feature"><i class="fas fa-feather-alt"></i> No Gravity</div>
+                <div class="feature"><i class="fas fa-user-astronaut"></i> Unlock All Characters</div>
+                <div class="feature"><i class="fas fa-coins"></i> Double Coin</div>
+            </div>
+            <p><strong>System:</strong> Auto Update</p>
+            <button class="download-btn" onclick="startDownload('https://www.mediafire.com/file/flyxm6gwmx1kwjp/ScriptSubwaySurfers_Vip.lua/file')">
+                <i class="fas fa-download"></i> Download Now
+            </button>
+        </div>
+
+        <!-- Required Tools -->
+        <div class="script-card scroll-reveal">
             <h2>Required Tools</h2>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="https://www.mediafire.com/file/lws8qa0zlcuj92y/Game_Guardian.apk/file" class="rgb-download-btn" style="flex: 1; min-width: 200px;">
-                    Game Guardian APK
-                </a>
-                <a href="https://www.mediafire.com/file/hqyty2i71nwolwx/Virtual.apk/file" class="rgb-download-btn" style="flex: 1; min-width: 200px;">
-                    Virtual Space APK
-                </a>
+                <button class="download-btn" onclick="startDownload('https://www.mediafire.com/file/lws8qa0zlcuj92y/Game_Guardian.apk/file')" style="flex: 1; min-width: 200px;">
+                    <i class="fas fa-download"></i> Game Guardian APK
+                </button>
+                <button class="download-btn" onclick="startDownload('https://www.mediafire.com/file/hqyty2i71nwolwx/Virtual.apk/file')" style="flex: 1; min-width: 200px;">
+                    <i class="fas fa-download"></i> Virtual Space APK
+                </button>
             </div>
         </div>
-        
-        <!-- Contact Section -->
-        <div class="script-card" id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:lennnhz6@gmail.com" style="color: #00ffff;">lennnhz6@gmail.com</a></p>
-            <p>Telegram: <a href="https://t.me/Lymmtrzy" style="color: #00ffff;">@Lymmtrzy</a></p>
-            <p>YouTube: <a href="https://www.youtube.com/@AvelineID" style="color: #00ffff;">AvelineID</a></p>
-        </div>
     </div>
-    
-    <footer>
-        <p>© 2023 AvilaneModz | Password: Avilane20</p>
+
+    <!-- Footer -->
+    <footer class="scroll-reveal">
+        <div class="social-links">
+            <a href="https://www.youtube.com/@AvelineID" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://t.me/Lymmtrzy" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.instagram.com/ajinurhlm_?igsh=NGxiaGpxdWtvYjNw" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2025 AvelineModz | All Rights Reserved</p>
     </footer>
 
+    <!-- Update Notification -->
+    <div class="update-banner" id="updateBanner">
+        <i class="fas fa-sync-alt"></i>Welcome To Aveline
+    </div>
+
     <script>
-        // Password Checker
-        function checkPassword() {
-            const pass = document.getElementById("vipPassword").value;
-            const message = document.getElementById("vipMessage");
+        // Loading Animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', function() {
+            document.body.setAttribute('data-theme', 
+                document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
             
-            if(pass === "Avilane20") {
-                message.innerHTML = "✅ Access Granted! Loading VIP content...";
-                message.style.color = "#0f0";
-                // Here you would typically load VIP content or redirect
-                setTimeout(() => {
-                    alert("VIP Content Unlocked! (This would show premium scripts in a real implementation)");
-                }, 1000);
-            } else {
-                message.innerHTML = "❌ Wrong Password! Try 'Avilane20'";
-                message.style.color = "#f00";
-            }
+            // Save preference to localStorage
+            localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme')) {
+            document.body.setAttribute('data-theme', localStorage.getItem('theme'));
         }
-        
-        // Menu Animation
-        document.querySelector('.rgb-dots').addEventListener('click', function() {
-            const dropdown = document.querySelector('.rgb-dropdown');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+
+        // Scroll Reveal Animation
+        const scrollReveals = document.querySelectorAll('.scroll-reveal');
+        const scrollReveal = function() {
+            scrollReveals.forEach(item => {
+                if (item.getBoundingClientRect().top < window.innerHeight - 100) {
+                    item.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', scrollReveal);
+        scrollReveal(); // Initialize
+
+        // Download Button Animation
+        function startDownload(url) {
+            const buttons = document.querySelectorAll('.download-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            const clickedBtn = event.target.closest('.download-btn');
+            clickedBtn.classList.add('download-processing');
+            clickedBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            setTimeout(function() {
+                window.open(url, '_blank');
+                
+                setTimeout(function() {
+                    clickedBtn.classList.remove('download-processing');
+                    clickedBtn.innerHTML = '<i class="fas fa-download"></i> Download Now';
+                    buttons.forEach(btn => {
+                        btn.disabled = false;
+                    });
+                }, 1000);
+            }, 2000);
+        }
+
+        // Show update notification after delay
+        setTimeout(function() {
+            document.getElementById('updateBanner').classList.add('show');
+        }, 5000);
+
+        // Hide update notification when clicked
+        document.getElementById('updateBanner').addEventListener('click', function() {
+            this.classList.remove('show');
         });
     </script>
 </body>
