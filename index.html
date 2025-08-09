@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AvelineModz | Premium Game Hacks</title>
+    <title>AvelineModz | Premium Game Hacks & Mods</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== CSS VARIABLES ===== */
         :root {
             --main-bg: #121212;
             --card-bg: #1e1e1e;
             --text-primary: #ffffff;
             --accent-cyan: #00ffff;
             --accent-pink: #ff00ff;
+            --accent-orange: #f39c12;
+            --accent-red: #e74c3c;
             --accent-purple: #9c27b0;
             --glow-cyan: 0 0 15px rgba(0, 255, 255, 0.7);
             --glow-pink: 0 0 15px rgba(255, 0, 255, 0.7);
+            --glow-orange: 0 0 15px rgba(243, 156, 18, 0.7);
             --transition: all 0.3s ease;
         }
 
-        /* ===== DARK/LIGHT MODE ===== */
         [data-theme="light"] {
             --main-bg: #f5f5f5;
             --card-bg: #ffffff;
             --text-primary: #333333;
         }
 
-        /* ===== BASE STYLES ===== */
         body {
             background-color: var(--main-bg);
             color: var(--text-primary);
@@ -98,9 +98,10 @@
             text-align: center;
             padding: 2rem 0;
             position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
         }
 
-        /* ===== RGB TOGGLE BUTTON ===== */
+        /* ===== THEME TOGGLE ===== */
         .theme-toggle {
             position: absolute;
             top: 20px;
@@ -124,7 +125,7 @@
             box-shadow: var(--glow-pink);
         }
 
-        /* ===== MAIN CONTENT STYLES ===== */
+        /* ===== MAIN CONTENT ===== */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -158,9 +159,73 @@
             background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
         }
 
+        /* ===== MLBB SPECIAL CARD ===== */
+        .mlbb-card {
+            border-left: 5px solid var(--accent-orange);
+        }
+
+        .mlbb-card::after {
+            content: 'HOT';
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--accent-red);
+            color: white;
+            width: 100px;
+            text-align: center;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* ===== FEATURES GRID ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .feature {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .mlbb-feature {
+            background: linear-gradient(90deg, rgba(243,156,18,0.2), transparent);
+            border-left: 3px solid var(--accent-orange);
+        }
+
+        .feature i {
+            margin-right: 8px;
+            color: var(--accent-cyan);
+        }
+
+        .mlbb-feature i {
+            color: var(--accent-orange) !important;
+        }
+
+        /* ===== WARNING NOTE ===== */
+        .warning-note {
+            background: rgba(231, 76, 60, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-red);
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
         /* ===== DOWNLOAD BUTTONS ===== */
         .download-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             padding: 12px 25px;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
             color: white;
@@ -169,15 +234,24 @@
             font-weight: bold;
             margin-top: 15px;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mlbb-download {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+            box-shadow: var(--glow-orange);
         }
 
         .download-btn:hover {
             transform: translateY(-3px);
             box-shadow: var(--glow-pink);
+        }
+
+        .mlbb-download:hover {
+            box-shadow: var(--glow-orange);
         }
 
         .download-btn::after {
@@ -195,28 +269,6 @@
             left: 100%;
         }
 
-        /* ===== FEATURES LIST ===== */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .feature {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .feature i {
-            margin-right: 8px;
-            color: var(--accent-cyan);
-        }
-
         /* ===== SCROLL EFFECTS ===== */
         .scroll-reveal {
             opacity: 0;
@@ -229,7 +281,7 @@
             transform: translateY(0);
         }
 
-        /* ===== FOOTER STYLES ===== */
+        /* ===== FOOTER ===== */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -255,7 +307,13 @@
             transform: translateY(-3px);
         }
 
-        /* ===== UPDATE NOTIFICATION ===== */
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* ===== UPDATE BANNER ===== */
         .update-banner {
             background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
             color: white;
@@ -275,7 +333,24 @@
             transform: translateY(0);
         }
 
-        /* ===== DELAYED DOWNLOAD ANIMATION ===== */
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .script-card {
+                padding: 15px;
+            }
+            
+            .mlbb-card::after {
+                right: -35px;
+                font-size: 12px;
+                width: 90px;
+            }
+        }
+
+        /* ===== DOWNLOAD PROCESSING ===== */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -284,7 +359,6 @@
 
         .download-processing {
             animation: pulse 1.5s infinite;
-            position: relative;
         }
 
         .download-processing::after {
@@ -307,7 +381,7 @@
         <p>Loading AvelineModz...</p>
     </div>
 
-    <!-- Theme Toggle Button -->
+    <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle">
         <i class="fas fa-adjust"></i>
     </button>
@@ -315,14 +389,37 @@
     <!-- Header -->
     <header>
         <h1 class="rgb-text">AvelineModz</h1>
-        <p>Premium Game Hacks & Scripts</p>
+        <p>Premium Game Hacks & Mods</p>
     </header>
 
     <!-- Main Content -->
     <div class="container">
+        <!-- Mobile Legends Mod -->
+        <div class="script-card scroll-reveal mlbb-card">
+            <h2><i class="fas fa-crown"></i> Mobile Legends Mod (Crack)</h2>
+            <div class="features">
+                <div class="feature mlbb-feature"><i class="fas fa-robot"></i> Auto Combo</div>
+                <div class="feature mlbb-feature"><i class="fas fa-bolt"></i> Auto Retribution</div>
+                <div class="feature mlbb-feature"><i class="fas fa-crosshairs"></i> Auto Aim</div>
+                <div class="feature mlbb-feature"><i class="fas fa-eye"></i> ESP Vision</div>
+                <div class="feature mlbb-feature"><i class="fas fa-drone-alt"></i> Drone View</div>
+                <div class="feature mlbb-feature"><i class="fas fa-info-circle"></i> Room Info</div>
+            </div>
+            
+            <div class="warning-note">
+                <i class="fas fa-exclamation-triangle"></i> <strong>Warning:</strong> Use at your own risk. May cause account ban.
+            </div>
+            
+            <p><strong>Cheat Info:</strong> Crack Version - No Key Required</p>
+            
+            <button class="download-btn mlbb-download" onclick="startDownload('https://www.mediafire.com/file/nag6lbqkmgrbeye/Crack_attic.apk/file')">
+                <i class="fas fa-download"></i> Download MLBB Mod
+            </button>
+        </div>
+
         <!-- Dead Target Script -->
         <div class="script-card scroll-reveal">
-            <h2>Dead Target VIP Script</h2>
+            <h2><i class="fas fa-skull"></i> Dead Target VIP Script</h2>
             <div class="features">
                 <div class="feature"><i class="fas fa-coins"></i> Unlimited Gold</div>
                 <div class="feature"><i class="fas fa-money-bill-wave"></i> Unlimited Money</div>
@@ -338,7 +435,7 @@
 
         <!-- Subway Surfers Script -->
         <div class="script-card scroll-reveal">
-            <h2>Subway Surfers VIP Script</h2>
+            <h2><i class="fas fa-subway"></i> Subway Surfers VIP Script</h2>
             <div class="features">
                 <div class="feature"><i class="fas fa-shopping-cart"></i> Free Shop</div>
                 <div class="feature"><i class="fas fa-key"></i> Unlimited Coin/Key</div>
@@ -347,7 +444,7 @@
                 <div class="feature"><i class="fas fa-user-astronaut"></i> Unlock All Characters</div>
                 <div class="feature"><i class="fas fa-coins"></i> Double Coin</div>
             </div>
-            <p><strong>System:</strong> Auto Update</p>
+            <p><strong>System:</strong> Auto Update Offset</p>
             <button class="download-btn" onclick="startDownload('https://www.mediafire.com/file/flyxm6gwmx1kwjp/ScriptSubwaySurfers_Vip.lua/file')">
                 <i class="fas fa-download"></i> Download Now
             </button>
@@ -355,7 +452,7 @@
 
         <!-- Required Tools -->
         <div class="script-card scroll-reveal">
-            <h2>Required Tools</h2>
+            <h2><i class="fas fa-tools"></i> Required Tools</h2>
             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                 <button class="download-btn" onclick="startDownload('https://www.mediafire.com/file/lws8qa0zlcuj92y/Game_Guardian.apk/file')" style="flex: 1; min-width: 200px;">
                     <i class="fas fa-download"></i> Game Guardian APK
@@ -370,16 +467,16 @@
     <!-- Footer -->
     <footer class="scroll-reveal">
         <div class="social-links">
-            <a href="https://www.youtube.com/@AvelineID" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://t.me/Lymmtrzy" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://www.instagram.com/ajinurhlm_?igsh=NGxiaGpxdWtvYjNw" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@AvelineID" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://t.me/Lymmtrzy" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.instagram.com/ajinurhlm_?igsh=NGxiaGpxdWtvYjNw" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <p>© 2025 AvelineModz | All Rights Reserved</p>
+        <p class="copyright">© 2025 AvelineModz | All Rights Reserved</p>
     </footer>
 
     <!-- Update Notification -->
     <div class="update-banner" id="updateBanner">
-        <i class="fas fa-sync-alt"></i>Welcome To Aveline
+        <i class="fas fa-sync-alt"></i> New Update - AvelineID 
     </div>
 
     <script>
@@ -393,13 +490,11 @@
             }, 1500);
         });
 
-        // Dark/Light Mode Toggle
+        // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', function() {
             document.body.setAttribute('data-theme', 
                 document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-            
-            // Save preference to localStorage
             localStorage.setItem('theme', document.body.getAttribute('data-theme'));
         });
 
@@ -419,7 +514,7 @@
         };
 
         window.addEventListener('scroll', scrollReveal);
-        scrollReveal(); // Initialize
+        scrollReveal();
 
         // Download Button Animation
         function startDownload(url) {
@@ -445,7 +540,7 @@
             }, 2000);
         }
 
-        // Show update notification after delay
+        // Show update notification
         setTimeout(function() {
             document.getElementById('updateBanner').classList.add('show');
         }, 5000);
